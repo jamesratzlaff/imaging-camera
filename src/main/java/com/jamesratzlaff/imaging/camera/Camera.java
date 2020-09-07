@@ -9,8 +9,24 @@ public class Camera {
 	private List<Resolution> availableResolutions;
 	private FieldOfView fieldOfView;
 	private float focalDistanceMm;
+	private int resolutionSelected=-1;
 	
 	
+	public void selectResolution(int index) {
+		if(index>-1&&index<getAvailableResolutions().size()) {
+			this.resolutionSelected=index;
+		}
+	}
+	
+	public Resolution getSelectedResolution() {
+		if(resolutionSelected==-1&&!getAvailableResolutions().isEmpty()) {
+			selectResolution(0);
+		}
+		if(resolutionSelected>-1) {
+			return getAvailableResolutions().get(resolutionSelected);
+		}
+		return null;
+	}
 	
 	
 	public void addResolution(int width, int height) {
